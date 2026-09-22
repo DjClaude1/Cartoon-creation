@@ -1,0 +1,6 @@
+{
+  "name": "Milo & Momo Toon Factory",
+  "description": "Automated children's cartoon production studio for Milo & Momo's Wonder Garden, featuring script generation, scene storyboard, voice/audio studio, animation, QA, approval queue, and YouTube publishing.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,10 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Milo & Momo Toon Factory Rules
+    // Allow read/write for all users or demo mode with authenticated access
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

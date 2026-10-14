@@ -17,44 +17,29 @@ import { YouTubePublishView } from './components/views/YouTubePublishView';
 import { DailyAutomationView } from './components/views/DailyAutomationView';
 import { JobMonitorView } from './components/views/JobMonitorView';
 import { SettingsView } from './components/views/SettingsView';
+import { LocalPipelineView } from './components/views/LocalPipelineView';
 
 const MainLayout: React.FC = () => {
-  const { currentView } = useApp();
-
+  const { currentView, setCurrentView } = useApp();
   const renderCurrentView = () => {
     switch (currentView) {
-      case 'dashboard':
-        return <DashboardView />;
-      case 'series_bible':
-        return <SeriesBibleView />;
-      case 'characters':
-        return <CharacterDatabaseView />;
-      case 'episodes':
-        return <EpisodesListView />;
-      case 'episode_studio':
-        return <EpisodeStudioView />;
-      case 'scene_board':
-        return <SceneBoardView />;
-      case 'audio_studio':
-        return <AudioStudioView />;
-      case 'animation_studio':
-        return <AnimationStudioView />;
-      case 'render_center':
-        return <RenderCenterView />;
-      case 'qa_center':
-        return <QACenterView />;
-      case 'approval_queue':
-        return <ApprovalQueueView />;
-      case 'youtube':
-        return <YouTubePublishView />;
-      case 'automation':
-        return <DailyAutomationView />;
-      case 'job_monitor':
-        return <JobMonitorView />;
-      case 'settings':
-        return <SettingsView />;
-      default:
-        return <DashboardView />;
+      case 'dashboard': return <DashboardView />;
+      case 'series_bible': return <SeriesBibleView />;
+      case 'characters': return <CharacterDatabaseView />;
+      case 'episodes': return <EpisodesListView />;
+      case 'episode_studio': return <EpisodeStudioView />;
+      case 'scene_board': return <SceneBoardView />;
+      case 'audio_studio': return <AudioStudioView />;
+      case 'animation_studio': return <AnimationStudioView />;
+      case 'render_center': return <RenderCenterView />;
+      case 'qa_center': return <QACenterView />;
+      case 'approval_queue': return <ApprovalQueueView />;
+      case 'youtube': return <YouTubePublishView />;
+      case 'automation': return <DailyAutomationView />;
+      case 'job_monitor': return <JobMonitorView />;
+      case 'settings': return <SettingsView />;
+      case 'local_pipeline': return <LocalPipelineView />;
+      default: return <DashboardView />;
     }
   };
 
@@ -63,18 +48,13 @@ const MainLayout: React.FC = () => {
       <Sidebar />
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         <Header />
-        <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">
-          {renderCurrentView()}
-        </main>
+        <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">{renderCurrentView()}</main>
+        <button onClick={() => setCurrentView('local_pipeline')} className="fixed bottom-5 right-5 z-50 rounded-full px-5 py-3 bg-amber-500 text-slate-950 font-extrabold shadow-xl hover:bg-amber-400">Create Animated Episode</button>
       </div>
     </div>
   );
 };
 
 export default function App() {
-  return (
-    <AppProvider>
-      <MainLayout />
-    </AppProvider>
-  );
+  return <AppProvider><MainLayout /></AppProvider>;
 }
